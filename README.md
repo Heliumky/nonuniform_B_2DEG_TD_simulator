@@ -17,37 +17,37 @@ The time-dependent and current-density parts are documented in
 The 2DEG lies in the $x$-$y$ plane. The field profile and gauge used by the
 program are
 
-$$
+```math
 \mathbf B(x)=\frac{B_0 x}{L}\hat{\mathbf z},\qquad
 \mathbf E(t)=\frac{V_e(t)}{L}\hat{\mathbf x},
-$$
+```
 
-$$
-\mathbf A(x)=\frac{B_0 x^2}{2L}\hat{\mathbf y},\qquad
+```math
+\mathbf A(x)=\frac{B_0 x^{2}}{2L}\hat{\mathbf y},\qquad
 \phi(x,t)=-\frac{V_e(t)}{L}x .
-$$
+```
 
 Because the Hamiltonian is translationally invariant in $y$, each channel
 
-$$
+```math
 \Psi(x,y,t)=L_y^{-1/2}e^{ik_y y}\psi_{k_y}(x,t)
-$$
+```
 
 evolves independently under
 
-$$
+```math
 H_{k_y}(t)=
-\frac{p_x^2}{2m^*}
-+\frac{1}{2m^*}
-\left(\hbar k_y+\frac{eB_0x^2}{2L}\right)^2
+\frac{p_x^{2}}{2m^{*}}
++\frac{1}{2m^{*}}
+\left(\hbar k_y+\frac{eB_0x^{2}}{2L}\right)^{2}
 +\frac{eV_e(t)}{L}x .
-$$
+```
 
 In code this becomes the polynomial matrix
 
-$$
-H=c_{p^2}p_x^2+c_xx+c_{x^2}x^2+c_{x^4}x^4+c_0I,
-$$
+```math
+H=c_{p^{2}}p_x^{2}+c_xx+c_{x^{2}}x^{2}+c_{x^{4}}x^{4}+c_0I,
+```
 
 assembled by [`hamiltonian.py`](hamiltonian.py) from SHO-basis operators in
 [`basis.py`](basis.py). Parameters are stored in [`params.py`](params.py) in
@@ -143,7 +143,7 @@ python generate_report_current_figures.py
 ### Static Diagonalization
 
 The static Hamiltonian is represented in an SHO basis. `basis.py` builds the
-matrix elements of $x$, $x^2$, $x^4$, and $p_x^2$ analytically from ladder
+matrix elements of $x$, $x^{2}$, $x^{4}$, and $p_x^{2}$ analytically from ladder
 operator identities. `spectrum.py` can use either dense diagonalization
 (`scipy.linalg.eigh`) or Lanczos Ritz pairs from [`lanczos.py`](lanczos.py).
 
@@ -161,7 +161,7 @@ Typical tunable quantities are:
 
 - `midpoint_dense`: a dense midpoint exponential reference.
 - `y6_2_lanczos`: the production sixth-order
-  $\Upsilon_2^{[6]}$ commutator-free propagator described in
+  $\Upsilon_{2}^{[6]}$ commutator-free propagator described in
   [`method.pdf`](method.pdf) and explained in [`non_BTD.pdf`](non_BTD.pdf).
 
 The production propagator samples the time-dependent Hamiltonian at three
@@ -180,14 +180,14 @@ with defaults defined near the top of `time_coeffs.py`.
 current for a fixed-$k_y$ channel. The returned quantities are line currents,
 not full 2D densities:
 
-$$
-L_y j_x=-\frac{e\hbar}{m^*}\operatorname{Im}(\psi^*\partial_x\psi),
-$$
+```math
+L_y j_x=-\frac{e\hbar}{m^{*}}\operatorname{Im}(\psi^{*}\partial_x\psi),
+```
 
-$$
-L_y j_y=-\frac{e}{m^*}
-\left(\hbar k_y+\frac{eB_0x^2}{2L}\right)|\psi|^2 .
-$$
+```math
+L_y j_y=-\frac{e}{m^{*}}
+\left(\hbar k_y+\frac{eB_0x^{2}}{2L}\right)|\psi|^{2} .
+```
 
 The $A_y(x)$ term is essential: omitting it would compute a canonical-momentum
 current instead of the physical mechanical current. The tests verify the
@@ -218,7 +218,7 @@ These save validation plots under `figures/` and `tests/artifacts/`.
 | File | Role |
 | --- | --- |
 | [`params.py`](params.py) | Physical constants, effective mass, field scale, and unit conversions. |
-| [`basis.py`](basis.py) | SHO matrix elements for $x$, $x^2$, $x^4$, and $p_x^2$. |
+| [`basis.py`](basis.py) | SHO matrix elements for $x$, $x^{2}$, $x^{4}$, and $p_x^{2}$. |
 | [`hamiltonian.py`](hamiltonian.py) | Fixed-$k_y$ quartic Hamiltonian assembly. |
 | [`potential.py`](potential.py) | Static effective-potential plotting. |
 | [`spectrum.py`](spectrum.py) | Static band-structure calculation. |
