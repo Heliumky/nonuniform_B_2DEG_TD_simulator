@@ -181,7 +181,7 @@ current for a fixed-$k_y$ channel. The returned quantities are line currents,
 not full 2D densities:
 
 ```math
-L_y j_x=-\frac{e\hbar}{m^{*}}\operatorname{Im}(\psi^{*}\partial_x\psi),
+L_y j_x=-\frac{e\hbar}{m^{*}}\mathrm{Im}(\psi^{*}\partial_x\psi),
 ```
 
 ```math
